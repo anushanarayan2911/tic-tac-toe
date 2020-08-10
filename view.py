@@ -14,6 +14,8 @@ class View:
         self.OKButton = Button(self.screen, text = "OK")
         self.invalidInputMessage = Label(self.screen, text = "Invalid Input. Please enter another row/column above.")
         self.nextButton = Button(self.screen, text = "Next")
+        self.userWinsGameMessage = Label(self.screen, text = "You win!")
+        self.userLosesGameMessage = Label(self.screen, text = "You lose!")
 
     def displayBoard(self):
         dashes = ""
@@ -50,6 +52,12 @@ class View:
     
     def displayInvalidInput(self):
         self.invalidInputMessage.pack()
+    
+    def displayWinMessage(self):
+        self.userWinsGameMessage.pack()
+    
+    def displayLoseMessage(self):
+        self.userLosesGameMessage.pack()
 
     def setBoardValue(self, x, y, character):
         if x == 1:
