@@ -11,4 +11,8 @@ class Controller:
     def showBoard(self):
         self.view.displayBoard()
     
+    def displayUserInputFields(self):
+        self.view.displayInputFields()
+  
+    
     

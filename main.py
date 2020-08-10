@@ -13,6 +13,7 @@ def main():
     controller = Controller(model, view)
 
     controller.showBoard()
+    controller.displayUserInputFields()
 
     screen.mainloop()
 
