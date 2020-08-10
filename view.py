@@ -71,3 +71,12 @@ class View:
 
             updatedRow3List = "".join(currentRow3List)
             self.row3.set(updatedRow3List)
+        
+    def forgetInputFields(self):
+        self.promptRowEntry.pack_forget()
+        self.promptColEntry.pack_forget()
+        self.rowInputField.pack_forget()
+        self.colInputField.pack_forget()
+    
+    def forgetOKButton(self):
+        self.OKButton.pack_forget()
