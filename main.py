@@ -15,7 +15,7 @@ def main():
     controller.showBoard()
     controller.displayUserInputFields()
     controller.displayOKButton()
-
+    
     screen.mainloop()
 
 if __name__ == "__main__":

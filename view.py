@@ -9,9 +9,10 @@ class View:
         self.row3 = StringVar()
         self.promptRowEntry = Label(self.screen, text = "Enter Row")
         self.promptColEntry = Label(self.screen, text = "Enter Column")
-        self.userRow = StringVar()
-        self.userCol = StringVar()
+        self.userRow = IntVar()
+        self.userCol = IntVar()
         self.OKButton = Button(self.screen, text = "OK")
+        self.invalidInputMessage = Label(self.screen, text = "Invalid Input. Please enter another row/column above.")
 
     def displayBoard(self):
         dashes = ""
@@ -42,6 +43,31 @@ class View:
     
     def displayOKButton(self):
         self.OKButton.pack()
-
-
     
+    def displayInvalidInput(self):
+        self.invalidInputMessage.pack()
+
+    def setBoardValue(self, x, y, character):
+        if x == 1:
+            currentRow1 = self.row1.get()
+            currentRow1List = list(currentRow1)
+            currentRow1List[y] = character
+
+            updatedRow1List = "".join(currentRow1List)
+            self.row1.set(updatedRow1List)
+
+        elif x == 2:
+            currentRow2 = self.row2.get()
+            currentRow2List = list(currentRow2)
+            currentRow2List[y] = character
+
+            updatedRow2List = "".join(currentRow2List)
+            self.row2.set(updatedRow2List)
+
+        elif x == 3:
+            currentRow3 = self.row3.get()
+            currentRow3List = list(currentRow3)
+            currentRow3List[y] = character
+
+            updatedRow3List = "".join(currentRow3List)
+            self.row3.set(updatedRow3List)
