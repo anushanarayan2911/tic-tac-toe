@@ -28,6 +28,9 @@ class Controller:
     def forgetNextButton(self):
         self.view.forgetNextButton()
     
+    def forgetInvalidInputMessage(self):
+        self.view.forgetInvalidInputMessage()
+    
     def changeBoard(self, x, y, character):
         self.view.setBoardValue(x, y, character)
     
@@ -77,6 +80,7 @@ class Controller:
             if currentRow1List[userCol] == "X" or currentRow1List[userCol] == "O":
                 self.view.displayInvalidInput()
             else:
+                self.forgetInvalidInputMessage()
                 self.changeBoard(userRow, userCol, "O")
                 self.view.forgetInputFields()
                 self.forgetOKButton()
@@ -88,6 +92,7 @@ class Controller:
             if currentRow2List[userCol] == "X" or currentRow2List[userCol] == "O":
                 self.view.displayInvalidInput()
             else:
+                self.forgetInvalidInputMessage()
                 self.changeBoard(userRow, userCol, "O")
                 self.view.forgetInputFields()
                 self.forgetOKButton()
@@ -99,6 +104,7 @@ class Controller:
             if currentRow3List[userCol] == "X" or currentRow3List[userCol] == "O":
                 self.view.displayInvalidInput()
             else:
+                self.forgetInvalidInputMessage()
                 self.changeBoard(userRow, userCol, "O")
                 self.view.forgetInputFields()
                 self.forgetOKButton()
@@ -107,44 +113,46 @@ class Controller:
         result, character = self.checkIfGameOver()
         if result:
             if character == "X" or character == "O":
+                self.forgetNextButton()
                 self.endGame(character)
     
+    def checkForValidCompInput(self, x, y):
+        if x == 1:
+            currentRow1 = self.view.row1.get()
+            row1List = list(currentRow1)
+            if row1List[y] == "O" or row1List[y] == "X":
+                return False
+        
+        elif x == 2:
+            currentRow2 = self.view.row2.get()
+            row2List = list(currentRow2)
+            if row2List[y] == "O" or row2List[y] == "X":
+                return False
+        
+        elif x == 3:
+            currentRow3 = self.view.row3.get()
+            row3List = list(currentRow3)
+            if row3List[y] == "O" or row3List[y] == "X":
+                return False
+        
+        else:
+            return True
+
     def compTurn(self, event):
-        self.view.forgetNextButton()
         compRow, compCol = self.model.compEntry()
 
-        currentRow1 = self.view.row1.get()
-        currentRow1List = list(currentRow1)
-        currentRow2 = self.view.row2.get()
-        currentRow2List = list(currentRow2)
-        currentRow3 = self.view.row3.get()
-        currentRow3List = list(currentRow3)
+        while self.checkForValidCompInput(compRow, compCol) == False:
+            compRow, compCol = self.model.compEntry()
 
-        if compRow == 1:
-            while currentRow1List[compCol] == "X" or currentRow1List[compCol] == "O":
-                self.model.invalidEntry()
+        self.changeBoard(compRow, compCol, "X")
+        self.displayUserInputFields()
+        self.displayOKButton()
 
-            self.changeBoard(compRow, compCol, "X")
-            self.displayUserInputFields()
-            self.displayOKButton()
+        self.forgetNextButton()
 
-        elif compRow == 2:
-            while currentRow2List[compCol] == "X" or currentRow2List[compCol] == "O":
-                self.model.invalidEntry()
-
-            self.changeBoard(compRow, compCol, "X")
-            self.displayUserInputFields()
-            self.displayOKButton()
-        
-        elif compRow == 3:
-            while currentRow3List[compCol] == "X" or currentRow3List[compCol] == "O":
-                self.model.invalidEntry()
-            
-            self.changeBoard(compRow, compCol, "X")
-            self.displayUserInputFields()
-            self.displayOKButton()
-        
         result, character = self.checkIfGameOver()
         if result:
             if character == "X" or character == "O":
                 self.endGame(character)
+                self.view.forgetInputFields()
+                self.forgetOKButton()

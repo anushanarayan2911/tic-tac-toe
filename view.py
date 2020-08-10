@@ -95,3 +95,6 @@ class View:
 
     def forgetNextButton(self):
         self.nextButton.pack_forget()
+    
+    def forgetInvalidInputMessage(self):
+        self.invalidInputMessage.pack_forget()
