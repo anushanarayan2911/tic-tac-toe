@@ -7,6 +7,8 @@ class View:
         self.row1 = StringVar()
         self.row2 = StringVar()
         self.row3 = StringVar()
+        self.startingPlayerLabel = Label(self.screen, text = "You go first")
+        self.userCharacterLabel = Label(self.screen, text = "You are O")
         self.promptRowEntry = Label(self.screen, text = "Enter Row")
         self.promptColEntry = Label(self.screen, text = "Enter Column")
         self.userRow = IntVar()
@@ -16,6 +18,7 @@ class View:
         self.nextButton = Button(self.screen, text = "Next")
         self.userWinsGameMessage = Label(self.screen, text = "You win!")
         self.userLosesGameMessage = Label(self.screen, text = "You lose!")
+        self.tieMessage = Label(self.screen, text = "Tie!")
 
     def displayBoard(self):
         dashes = ""
@@ -33,6 +36,10 @@ class View:
         self.row1Label.pack()
         self.row2Label.pack()
         self.row3Label.pack()
+    
+    def displayStartingStatements(self):
+        self.startingPlayerLabel.pack()
+        self.userCharacterLabel.pack()
     
     def displayInputFields(self):
         self.promptRowEntry.pack()
@@ -58,6 +65,9 @@ class View:
     
     def displayLoseMessage(self):
         self.userLosesGameMessage.pack()
+    
+    def displayTieMessage(self):
+        self.tieMessage.pack()
 
     def setBoardValue(self, x, y, character):
         if x == 1:
@@ -98,3 +108,7 @@ class View:
     
     def forgetInvalidInputMessage(self):
         self.invalidInputMessage.pack_forget()
+    
+    def forgetStartingStatements(self):
+        self.startingPlayerLabel.pack_forget()
+        self.userCharacterLabel.pack_forget()

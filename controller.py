@@ -13,6 +13,9 @@ class Controller:
     def showBoard(self):
         self.view.displayBoard()
     
+    def displayStartingStatements(self):
+        self.view.displayStartingStatements()
+    
     def displayUserInputFields(self):
         self.view.displayInputFields()
         
@@ -30,6 +33,9 @@ class Controller:
     
     def forgetInvalidInputMessage(self):
         self.view.forgetInvalidInputMessage()
+    
+    def forgetStartingStatements(self):
+        self.view.forgetStartingStatements()
     
     def changeBoard(self, x, y, character):
         self.view.setBoardValue(x, y, character)
@@ -68,6 +74,7 @@ class Controller:
             self.view.displayWinMessage()
     
     def userTurn(self, event):
+        self.forgetStartingStatements()
         row = self.view.userRow.get()
         col = self.view.userCol.get()
 

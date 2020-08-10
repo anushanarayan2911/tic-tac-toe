@@ -12,6 +12,7 @@ def main():
     view = View(screen)
     controller = Controller(model, view)
 
+    controller.displayStartingStatements()
     controller.showBoard()
     controller.displayUserInputFields()
     controller.displayOKButton()
