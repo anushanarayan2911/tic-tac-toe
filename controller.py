@@ -63,6 +63,7 @@ class Controller:
                 self.view.displayNextButton()
     
     def compTurn(self, event):
+        self.view.forgetNextButton()
         compRow, compCol = self.model.compEntry()
 
         if compRow == 1:
