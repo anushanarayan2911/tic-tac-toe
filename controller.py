@@ -8,6 +8,7 @@ class Controller:
         self.model = model
         self.view = view 
         self.view.OKButton.bind("<Button>", self.userTurn)
+        self.view.nextButton.bind("<Button>", self.compTurn)
         
     def showBoard(self):
         self.view.displayBoard()
@@ -60,4 +61,36 @@ class Controller:
                 self.view.forgetInputFields()
                 self.view.forgetOKButton()
                 self.view.displayNextButton()
+    
+    def compTurn(self, event):
+        compRow, compCol = self.model.compEntry()
+
+        if compRow == 1:
+            currentRow1 = self.view.row1.get()
+            currentRow1List = list(currentRow1)
+            while currentRow1List[compCol] == "X" or currentRow1List[compCol] == "O":
+                self.model.invalidEntry()
+
+            self.changeBoard(compRow, compCol, "X")
+            self.displayUserInputFields()
+            self.displayOKButton()
+
+        elif compRow == 2:
+            currentRow2 = self.view.row2.get()
+            currentRow2List = list(currentRow2)
+            while currentRow2List[compCol] == "X" or currentRow2List[compCol] == "O":
+                self.model.invalidEntry()
+
+            self.changeBoard(compRow, compCol, "X")
+            self.displayUserInputFields()
+            self.displayOKButton()
         
+        elif compRow == 3:
+            currentRow3 = self.view.row3.get()
+            currentRow3List = list(currentRow3)
+            while currentRow3List[compCol] == "X" or currentRow3List[compCol] == "O":
+                self.model.invalidEntry()
+            
+            self.changeBoard(compRow, compCol, "X")
+            self.displayUserInputFields()
+            self.displayOKButton()

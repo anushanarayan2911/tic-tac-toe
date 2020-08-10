@@ -84,3 +84,6 @@ class View:
     
     def forgetOKButton(self):
         self.OKButton.pack_forget()
+    
+    def forgetNextButton(self):
+        self.nextButton.pack_forget()
