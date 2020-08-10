@@ -13,6 +13,7 @@ class View:
         self.userCol = IntVar()
         self.OKButton = Button(self.screen, text = "OK")
         self.invalidInputMessage = Label(self.screen, text = "Invalid Input. Please enter another row/column above.")
+        self.nextButton = Button(self.screen, text = "Next")
 
     def displayBoard(self):
         dashes = ""
@@ -43,6 +44,9 @@ class View:
     
     def displayOKButton(self):
         self.OKButton.pack()
+    
+    def displayNextButton(self):
+        self.nextButton.pack()
     
     def displayInvalidInput(self):
         self.invalidInputMessage.pack()

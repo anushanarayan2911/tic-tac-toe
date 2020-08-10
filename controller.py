@@ -37,6 +37,7 @@ class Controller:
                 self.changeBoard(userRow, userCol, "O")
                 self.view.forgetInputFields()
                 self.view.forgetOKButton()
+                self.view.displayNextButton()
 
         elif userRow == 2:
             currentRow2 = self.view.row2.get()
@@ -46,6 +47,8 @@ class Controller:
             else:
                 self.changeBoard(userRow, userCol, "O")
                 self.view.forgetInputFields()
+                self.view.forgetOKButton()
+                self.view.displayNextButton()
 
         elif userRow == 3:
             currentRow3 = self.view.row3.get()
@@ -55,4 +58,6 @@ class Controller:
             else:
                 self.changeBoard(userRow, userCol, "O")
                 self.view.forgetInputFields()
+                self.view.forgetOKButton()
+                self.view.displayNextButton()
         
