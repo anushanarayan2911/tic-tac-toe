@@ -19,6 +19,15 @@ class Controller:
     def displayOKButton(self):
         self.view.displayOKButton()
     
+    def displayNextButton(self):
+        self.view.displayNextButton()
+    
+    def forgetOKButton(self):
+        self.view.forgetOKButton()
+    
+    def forgetNextButton(self):
+        self.view.forgetNextButton()
+    
     def changeBoard(self, x, y, character):
         self.view.setBoardValue(x, y, character)
     
@@ -37,8 +46,8 @@ class Controller:
             else:
                 self.changeBoard(userRow, userCol, "O")
                 self.view.forgetInputFields()
-                self.view.forgetOKButton()
-                self.view.displayNextButton()
+                self.forgetOKButton()
+                self.displayNextButton()
 
         elif userRow == 2:
             currentRow2 = self.view.row2.get()
@@ -48,8 +57,8 @@ class Controller:
             else:
                 self.changeBoard(userRow, userCol, "O")
                 self.view.forgetInputFields()
-                self.view.forgetOKButton()
-                self.view.displayNextButton()
+                self.forgetOKButton()
+                self.displayNextButton()
 
         elif userRow == 3:
             currentRow3 = self.view.row3.get()
@@ -59,16 +68,21 @@ class Controller:
             else:
                 self.changeBoard(userRow, userCol, "O")
                 self.view.forgetInputFields()
-                self.view.forgetOKButton()
-                self.view.displayNextButton()
+                self.forgetOKButton()
+                self.displayNextButton()
     
     def compTurn(self, event):
         self.view.forgetNextButton()
         compRow, compCol = self.model.compEntry()
 
+        currentRow1 = self.view.row1.get()
+        currentRow1List = list(currentRow1)
+        currentRow2 = self.view.row2.get()
+        currentRow2List = list(currentRow2)
+        currentRow3 = self.view.row3.get()
+        currentRow3List = list(currentRow3)
+
         if compRow == 1:
-            currentRow1 = self.view.row1.get()
-            currentRow1List = list(currentRow1)
             while currentRow1List[compCol] == "X" or currentRow1List[compCol] == "O":
                 self.model.invalidEntry()
 
@@ -77,8 +91,6 @@ class Controller:
             self.displayOKButton()
 
         elif compRow == 2:
-            currentRow2 = self.view.row2.get()
-            currentRow2List = list(currentRow2)
             while currentRow2List[compCol] == "X" or currentRow2List[compCol] == "O":
                 self.model.invalidEntry()
 
@@ -87,8 +99,6 @@ class Controller:
             self.displayOKButton()
         
         elif compRow == 3:
-            currentRow3 = self.view.row3.get()
-            currentRow3List = list(currentRow3)
             while currentRow3List[compCol] == "X" or currentRow3List[compCol] == "O":
                 self.model.invalidEntry()
             
