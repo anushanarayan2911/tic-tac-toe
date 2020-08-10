@@ -14,6 +14,7 @@ def main():
 
     controller.showBoard()
     controller.displayUserInputFields()
+    controller.displayOKButton()
 
     screen.mainloop()
 

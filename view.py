@@ -11,6 +11,7 @@ class View:
         self.promptColEntry = Label(self.screen, text = "Enter Column")
         self.userRow = StringVar()
         self.userCol = StringVar()
+        self.OKButton = Button(self.screen, text = "OK")
 
     def displayBoard(self):
         dashes = ""
@@ -37,5 +38,10 @@ class View:
         self.promptColEntry.pack()
         self.colInputField = Entry(self.screen, textvariable = self.userCol)      
         self.colInputField.pack()
+        Label(self.screen, text = " ").pack()
+    
+    def displayOKButton(self):
+        self.OKButton.pack()
+
 
     

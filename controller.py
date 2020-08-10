@@ -13,6 +13,10 @@ class Controller:
     
     def displayUserInputFields(self):
         self.view.displayInputFields()
+    
+    def displayOKButton(self):
+        self.view.displayOKButton()
+
   
     
     
