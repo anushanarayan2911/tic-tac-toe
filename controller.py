@@ -22,6 +22,39 @@ class Controller:
     def changeBoard(self, x, y, character):
         self.view.setBoardValue(x, y, character)
     
+    def checkIfGameOver(self):
+        currentRow1 = self.view.row1.get()
+        row1List = list(currentRow1)
+        currentRow2 = self.view.row2.get()
+        row2List = list(currentRow2)
+        currentRow3 = self.view.row3.get()
+        row3List = list(currentRow3)
+
+        if row1List[0] == row1List[2] == row1List[4]:
+            return True, row1List[0]
+        elif row2List[0] == row2List[2] == row2List[4]:
+            return True, row2List[0]
+        elif row3List[0] == row3List[2] == row3List[4]:
+            return True, row3List[0]
+        elif row1List[0] == row2List[0] == row3List[0]:
+            return True, row1List[0]
+        elif row1List[2] == row2List[2] == row3List[2]:
+            return True, row1List[2]
+        elif row1List[4] == row2List[4] == row3List[4]:
+            return True, row1List[4]
+        elif row1List[0] == row2List[2] == row3List[4]:
+            return True, row1List[0]
+        elif row1List[4] == row2List[2] == row3List[0]:
+            return True, row1List[4]
+        else:
+            return False, " "
+    
+    def endGame(self, character):
+        if character == "X":
+            self.view.displayLoseMessage()
+        elif character == "O":
+            self.view.displayWinMessage()
+    
     def userTurn(self, event):
         row = self.view.userRow.get()
         col = self.view.userCol.get()
@@ -61,6 +94,11 @@ class Controller:
                 self.view.forgetInputFields()
                 self.view.forgetOKButton()
                 self.view.displayNextButton()
+        
+        result, character = self.checkIfGameOver()
+        if result:
+            if character == "X" or character == "O":
+                self.endGame(character)
     
     def compTurn(self, event):
         self.view.forgetNextButton()
@@ -95,3 +133,8 @@ class Controller:
             self.changeBoard(compRow, compCol, "X")
             self.displayUserInputFields()
             self.displayOKButton()
+        
+        result, character = self.checkIfGameOver()
+        if result:
+            if character == "X" or character == "O":
+                self.endGame(character)
