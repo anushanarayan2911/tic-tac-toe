@@ -122,6 +122,32 @@ class Controller:
             if character == "X" or character == "O":
                 self.forgetNextButton()
                 self.endGame(character)
+        
+        elif result == False:
+            currentRow1 = self.view.row1.get()
+            currentRow1List = list(currentRow1)
+            currentRow2 = self.view.row2.get()
+            currentRow2List = list(currentRow2)
+            currentRow3 = self.view.row3.get()
+            currentRow3List = list(currentRow3)
+            currentBoardList = []
+            counter = 0
+
+            for i in range(len(currentRow1List)):
+                currentBoardList.append(currentRow1List[i])
+            for j in range(len(currentRow2List)):
+                currentBoardList.append(currentRow2List[j])
+            for k in range(len(currentRow3List)):
+                currentBoardList.append(currentRow3List[k])
+            
+            for n in range(len(currentBoardList)):
+                if currentBoardList[n] == "_":
+                    counter += 1
+
+            if counter == 0:
+                self.view.displayTieMessage()
+                self.forgetNextButton()
+
     
     def checkForValidCompInput(self, x, y):
         if x == 1:
@@ -161,5 +187,32 @@ class Controller:
         if result:
             if character == "X" or character == "O":
                 self.endGame(character)
+                self.view.forgetInputFields()
+                self.forgetOKButton()
+
+        elif result == False:
+            
+            currentRow1 = self.view.row1.get()
+            currentRow1List = list(currentRow1)
+            currentRow2 = self.view.row2.get()
+            currentRow2List = list(currentRow2)
+            currentRow3 = self.view.row3.get()
+            currentRow3List = list(currentRow3)
+            currentBoardList = []
+            counter = 0
+
+            for i in range(len(currentRow1List)):
+                currentBoardList.append(currentRow1List[i])
+            for j in range(len(currentRow2List)):
+                currentBoardList.append(currentRow2List[j])
+            for k in range(len(currentRow3List)):
+                currentBoardList.append(currentRow3List[k])
+            
+            for n in range(len(currentBoardList)):
+                if currentBoardList[n] == "_":
+                    counter += 1
+
+            if counter == 0:
+                self.view.displayTieMessage()
                 self.view.forgetInputFields()
                 self.forgetOKButton()
